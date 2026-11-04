@@ -274,3 +274,4 @@ CREATE POLICY "Owners can delete own AMC reminder schedules"
   FOR DELETE
   TO authenticated
   USING (public.is_business_owner(business_id));
+

@@ -259,3 +259,4 @@ CREATE POLICY "Owners can delete own service entries"
   FOR DELETE
   TO authenticated
   USING (public.is_business_owner(business_id));
+

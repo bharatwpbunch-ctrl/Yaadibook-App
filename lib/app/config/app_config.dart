@@ -50,12 +50,13 @@ class AppConfig {
 
     const supabaseUrl = String.fromEnvironment(
       'SUPABASE_URL',
-      defaultValue: 'https://placeholder.supabase.co',
+      defaultValue: 'https://indaxefhyszjllrnssvm.supabase.co',
     );
 
     const supabaseAnonKey = String.fromEnvironment(
       'SUPABASE_ANON_KEY',
-      defaultValue: 'placeholder-anon-key',
+      defaultValue:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImluZGF4ZWZoeXN6amxscm5zc3ZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM3OTAzNzcsImV4cCI6MjEwOTM2NjM3N30.sojcD3Q-u3bsS4yl6kac6lhWUK7_hPE9MmDbSk2QiMI',
     );
 
     return AppConfig(

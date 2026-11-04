@@ -339,3 +339,4 @@ BEGIN
   RETURN v_business_id;
 END;
 $$;
+

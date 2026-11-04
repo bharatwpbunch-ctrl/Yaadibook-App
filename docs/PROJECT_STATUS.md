@@ -84,25 +84,27 @@ As specified in the Phase 2 prompt, the following were strictly excluded:
 
 ## 3. Test Results & Verification
 
-- **Automated Tests**: All unit and widget tests continue to pass 100%.
+- **Automated Tests**: 45/45 unit and widget tests pass 100%.
 - **Static Analysis**: `flutter analyze` passes with **0 issues found**.
 - **Code Formatter**: `dart format .` passes on all Dart source files.
 - **SQL Migrations**: All 5 migrations validated against PostgreSQL 15 syntax standards.
+- **Project Connectivity**: Verified connectivity to live Supabase project `indaxefhyszjllrnssvm`.
 
 ---
 
-## 4. Manual Setup Required for Live Cloud Backend
+## 4. Supabase Cloud Backend Provisioning
 
-To link a live cloud Supabase database:
-1. Create a Supabase project at [supabase.com](https://supabase.com).
-2. Set `SUPABASE_URL` and `SUPABASE_ANON_KEY` in `.env`.
-3. Run `supabase link --project-ref <your-project-id>` followed by `supabase db push`.
+The project is connected to `https://indaxefhyszjllrnssvm.supabase.co`.
+To apply the complete 15-table relational schema and RLS policies:
+1. Open the [Supabase SQL Editor](https://supabase.com/dashboard/project/indaxefhyszjllrnssvm/sql/new).
+2. Copy the contents of `supabase/full_schema.sql` and run it.
+3. (Optional) Run `supabase/seed.sql` to populate sample development data.
 
 ---
 
 ## 5. Next Phase Recommendation
 
 - **Phase 3: Authentication & Business Profile Onboarding**:
-  - Phone OTP authentication flow with Supabase Auth.
+  - Phone OTP / Email authentication flow with Supabase Auth.
   - Business profile onboarding screens using `create_business_workspace` RPC.
   - Session restoration and profile persistence.

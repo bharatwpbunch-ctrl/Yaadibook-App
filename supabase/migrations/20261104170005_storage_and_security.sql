@@ -82,3 +82,4 @@ CREATE POLICY "Owners can delete own business assets"
     bucket_id IN ('business-assets', 'customer-attachments', 'service-attachments', 'amc-documents') AND
     public.is_business_owner(((storage.foldername(name))[1])::uuid)
   );
+

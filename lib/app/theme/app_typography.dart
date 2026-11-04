@@ -17,10 +17,25 @@ class AppTypography {
   ];
 
   static TextTheme createTextTheme(BuildContext? context) {
-    // Base font styling with font fallback for Gujarati & Devanagari scripts
     final baseTextTheme = ThemeData.light().textTheme;
 
-    return GoogleFonts.notoSansTextTheme(baseTextTheme).copyWith(
+    // In unit/widget tests where allowRuntimeFetching is disabled, use base text theme
+    // with font fallbacks to prevent font network fetch attempts.
+    if (!GoogleFonts.config.allowRuntimeFetching) {
+      return _applyTypographyStyles(baseTextTheme);
+    }
+
+    try {
+      return _applyTypographyStyles(
+        GoogleFonts.notoSansTextTheme(baseTextTheme),
+      );
+    } catch (_) {
+      return _applyTypographyStyles(baseTextTheme);
+    }
+  }
+
+  static TextTheme _applyTypographyStyles(TextTheme theme) {
+    return theme.copyWith(
       displayLarge: const TextStyle(
         fontSize: 32,
         fontWeight: FontWeight.w700,

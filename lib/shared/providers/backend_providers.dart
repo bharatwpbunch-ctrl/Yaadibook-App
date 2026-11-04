@@ -50,3 +50,4 @@ final currentBusinessProvider = FutureProvider<Business?>((ref) async {
   final businessRepo = ref.watch(businessRepositoryProvider);
   return businessRepo.getMyBusiness();
 });
+

@@ -118,3 +118,4 @@ When schema modifications are introduced, generate updated TypeScript/Dart schem
 # Generate TypeScript definitions (used for Edge Functions)
 supabase gen types typescript --linked > supabase/functions/_shared/database.types.ts
 ```
+

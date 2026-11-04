@@ -111,3 +111,4 @@ CREATE POLICY "Owners can view own business assets"
 1. **Unauthenticated Public Access**: None. All public buckets and tables are strictly closed.
 2. **Bulk Communications**: Since manual WhatsApp/SMS messages are opened via native intent schemes (`whatsapp://send`), message content and recipient numbers are validated on device before intent dispatch.
 3. **Audit Log Protection**: Direct SQL `UPDATE` and `DELETE` on `audit_logs` are forbidden by omitting those policies entirely.
+

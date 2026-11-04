@@ -257,3 +257,4 @@ Lightweight business activity audit log.
 | Customer Contact Details | `customers.primary_phone` | Clean E.164-compatible phone number |
 | Actual Completed Service Record | `service_entries` | Immutable historical record of work performed |
 | Next Due Date for Recurring Maintenance | `maintenance_plans.next_due_date` | Advances when an occurrence is completed |
+
