@@ -31,7 +31,25 @@
 
 ---
 
-## 3. Git & Branching Strategy
+## 3. Authentication & Onboarding Conventions (Phase 3)
+
+1. **User Identity vs Profile**:
+   - Authentication sessions are managed by Supabase Auth (`auth.users`).
+   - Business owner metadata resides in `public.profiles`.
+   - On registration, profile creation is idempotent via `upsertProfile`.
+2. **Business Isolation & Single Workspace**:
+   - Each authenticated owner can create at most one business in MVP.
+   - All workspace creations must invoke the PostgreSQL function `create_business_workspace` atomically.
+   - Do not trust client-supplied owner user IDs; ownership is derived from `auth.uid()`.
+3. **User-Friendly Error Translation**:
+   - Never surface raw SQL errors, stack traces, or Supabase AuthException strings directly to the user.
+   - Map errors to friendly localized strings in `AuthController`.
+4. **Form State Preservation**:
+   - When a network or server validation error occurs during onboarding or registration, preserve user inputs in the controller state to allow safe retry without retyping.
+
+---
+
+## 4. Git & Branching Strategy
 
 - `main`: Production-ready releases.
 - `develop`: Integration branch for active phase features.

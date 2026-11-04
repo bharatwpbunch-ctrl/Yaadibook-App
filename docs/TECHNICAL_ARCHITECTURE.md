@@ -110,3 +110,23 @@ The following must **NEVER** be present anywhere in the Flutter codebase, assets
 - Generated classes output to `lib/app/localization/generated/app_localizations.dart`.
 - `AppLocaleNotifier` manages active runtime locale and persists user selection via `SecureStorageService`.
 - Noto Sans typography stack ensures non-breaking rendering for compound Gujarati consonants and Devanagari ligatures.
+
+---
+
+## 6. Authentication & Route Guard Architecture (Phase 3)
+
+### 6.1 State Management Architecture
+- **`AuthController`**: Manages registration, login, logout, password reset, and user-friendly error translation.
+- **`OnboardingController`**: Manages the 3-step business onboarding form state, multi-step validations, and atomic workspace creation via the `create_business_workspace` RPC.
+- **`onboardingJourneyStatusProvider`**: Computes the user's live journey status:
+  - `loading`: Querying active session and workspace.
+  - `unauthenticated`: No session; restricted to welcome/auth routes.
+  - `needsBusiness`: Authenticated, but no business workspace exists; routed to `/onboarding`.
+  - `completed`: Business workspace active; authorized for the app shell (`/today`).
+
+### 6.2 GoRouter Navigation & Route Guards
+- `AppRouterNotifier` extends `ChangeNotifier` and binds to `onboardingJourneyStatusProvider` and `authStateProvider` to trigger instant reactive route redirects.
+- Unauthenticated users cannot visit protected business routes.
+- Authenticated users without a business cannot bypass onboarding.
+- Users with completed onboarding cannot visit login or register routes.
+

@@ -2,12 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:yaadibook/app/app.dart';
+import 'package:yaadibook/features/onboarding/providers/onboarding_status_provider.dart';
 
 void main() {
   testWidgets('Bottom navigation tabs switch active screens', (
     WidgetTester tester,
   ) async {
-    await tester.pumpWidget(const ProviderScope(child: YaadibookApp()));
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          onboardingJourneyStatusProvider.overrideWithValue(
+            OnboardingJourneyStatus.completed,
+          ),
+        ],
+        child: const YaadibookApp(),
+      ),
+    );
     await tester.pumpAndSettle();
 
     // Verify Today screen is initial

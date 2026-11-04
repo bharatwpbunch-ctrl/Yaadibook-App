@@ -1,8 +1,8 @@
 # Yaadibook — Project Status & Phase Tracking
 
-## Current Status: Phase 2 Completed (Awaiting Approval)
+## Current Status: Phase 3 Completed (Awaiting Approval)
 
-**Phase**: Phase 2: Supabase Backend & Database Architecture  
+**Phase**: Phase 3: Authentication & Single-Business Onboarding  
 **Date**: November 2026  
 **Status**: Completed & Verified  
 
@@ -18,93 +18,84 @@
 - [x] Initial automated test suite passing 100%.
 
 ### Phase 2: Supabase Backend & Database Architecture (Completed)
-- [x] **Supabase CLI Configuration**:
-  - Supabase CLI installed globally (`3.0.0`).
-  - Project initialized with `supabase/config.toml`.
-- [x] **Relational PostgreSQL Schema (15 Tables)**:
-  1. `profiles`: Business owner profile (1:1 with `auth.users`).
-  2. `businesses`: Workspace entity with owner unique constraint (1 owner = 1 business in MVP).
-  3. `customers`: Customer records with business isolation and phone indexing.
-  4. `customer_addresses`: Multiple locations with composite foreign key to `customers`.
-  5. `equipment`: Optional device assets with warranty date validation checks.
-  6. `service_entries`: Installations, repairs, and servicing history with non-negative amounts.
-  7. `maintenance_plans`: Recurring/one-time preventative service schedules.
-  8. `maintenance_occurrences`: Individual scheduled events with unique `(plan_id, due_date)` constraint.
-  9. `amc_contracts`: Annual contracts with date range check (`end_date >= start_date`).
-  10. `amc_reminder_schedules`: Expiration reminder offsets with unique `(contract_id, days)` constraint.
-  11. `reminders`: Unified follow-up and reminder records for customers and general tasks.
-  12. `communication_logs`: Customer contact history with initiated vs confirmed delivery statuses.
-  13. `notification_preferences`: Per-business notification settings.
-  14. `business_settings`: Formatting and localization preferences.
-  15. `audit_logs`: Immutable security audit trail with JSONB metadata.
-- [x] **Row Level Security (RLS) & Multi-Tenant Isolation**:
-  - RLS enabled across all 15 tables.
-  - Ownership helper functions: `public.is_business_owner(uuid)` and `public.get_my_business_id()`.
-  - Composite foreign keys enforcing that child records match the parent's `business_id`.
-  - Immutable audit logs (client UPDATE/DELETE denied).
-- [x] **Supabase Storage Buckets & Policies**:
-  - `business-assets` (Private, 5MB limit).
-  - `customer-attachments` (Private, 10MB limit).
-  - `service-attachments` (Private, 10MB limit).
-  - `amc-documents` (Private, 15MB limit).
-  - Path-scoped RLS policies: `<business_id>/...` verified against caller ownership.
-- [x] **Atomic Business Creation RPC**:
-  - `create_business_workspace` function initializes business, settings, notification preferences, and audit entry in a single atomic transaction.
-- [x] **Database Migrations & Seed Data**:
-  - 5 version-controlled migration files in `supabase/migrations/`.
-  - Realistic development seed data in `supabase/seed.sql` (no real personal info).
-- [x] **Flutter Integration & Data Layer**:
-  - Domain models in `lib/shared/models/` (`UserProfile`, `Business`, `Customer`, `ServiceEntry`, `AmcContract`, `Reminder`).
-  - Repository interfaces and Supabase implementations in `lib/shared/repositories/` (`IAuthRepository`, `IBusinessRepository`, `ICustomerRepository`, `IServiceRepository`, `IReminderRepository`).
-  - Riverpod providers in `lib/shared/providers/backend_providers.dart`.
-- [x] **Comprehensive Documentation**:
-  - `docs/DATABASE_SCHEMA.md`
-  - `docs/DATABASE_SECURITY.md`
-  - `docs/SUPABASE_SETUP.md`
-  - Updated `docs/TECHNICAL_ARCHITECTURE.md`
-  - Updated `docs/PROJECT_STATUS.md`
+- [x] Supabase project configuration (`indaxefhyszjllrnssvm`).
+- [x] Relational PostgreSQL Schema (15 Tables) with strict RLS on all tables.
+- [x] Atomic Business Creation RPC (`create_business_workspace`).
+- [x] Supabase Storage buckets & policies (`business-assets`, `customer-attachments`, `service-attachments`, `amc-documents`).
+- [x] 5 version-controlled migration files in `supabase/migrations/` and consolidated `supabase/full_schema.sql`.
+- [x] Domain models and repository foundations in `lib/shared/`.
+
+### Phase 3: Authentication & Single-Business Onboarding (Completed)
+- [x] **Supabase Auth Integration**:
+  - Email/password registration with validation and visibility toggles (`RegisterScreen`).
+  - Email/password authentication with friendly error translation (`LoginScreen`).
+  - Password recovery request (`ForgotPasswordScreen`) and deep link password update (`ResetPasswordScreen`).
+  - Auto-refresh session restoration and persistent secure tokens.
+  - Graceful sign-out with cache invalidation.
+- [x] **Profile & Workspace Synchronization**:
+  - Idempotent profile provisioning in `public.profiles` (`ProfileRepository`).
+  - Single-business workspace constraint enforcement (1 owner = 1 workspace in MVP).
+  - Atomic workspace creation via `create_business_workspace` RPC.
+  - Automatic language preference synchronization between app and profile.
+- [x] **Single-Business Onboarding Wizard (3 Steps)**:
+  - `OnboardingStepIndicator` tracking progress (Step 1 of 3, 2 of 3, 3 of 3).
+  - **Step 1 (Business Info)**: Business name, trade category selection (CCTV, AC/HVAC, RO, Appliance Repair, Electrical, Plumbing, General Maintenance, Other with custom category field), 10-digit Indian phone number (`+91`), optional business email.
+  - **Step 2 (Business Address)**: Address line 1, line 2, city, state (default Gujarat, editable), 6-digit PIN code, country (India).
+  - **Step 3 (Preferences)**: App language selector (English, ગુજરાતી, हिन्दी) with instant app-wide locale updates, date format (`DD/MM/YYYY`), 12-hour time format, timezone (`Asia/Kolkata`).
+  - Form state preservation across step navigation and error recovery.
+- [x] **Navigation & Route Protection (GoRouter)**:
+  - Dedicated route guard checking `onboardingJourneyStatusProvider`.
+  - Unauthenticated users protected from internal routes and directed to `/welcome` or auth screens.
+  - Authenticated users without a business workspace routed to `/onboarding`.
+  - Onboarded users routed seamlessly to `/today` and protected from re-entering auth screens.
+  - Reactive `AppRouterNotifier` for instant state transitions.
+- [x] **Trilingual Localisation**:
+  - Complete English, Gujarati, and Hindi translations for all auth and onboarding screens, errors, categories, and validation messages in ARB files.
+- [x] **Documentation**:
+  - Created `docs/AUTHENTICATION_FLOW.md`.
+  - Created `docs/ONBOARDING_FLOW.md`.
+  - Updated `docs/TECHNICAL_ARCHITECTURE.md`.
+  - Updated `docs/DEVELOPMENT_GUIDELINES.md`.
+  - Updated `docs/PROJECT_STATUS.md`.
 
 ---
 
-## 2. Strict Scope Boundaries Maintained (Phase 2)
+## 2. Strict Scope Boundaries Maintained (Phase 3)
 
-As specified in the Phase 2 prompt, the following were strictly excluded:
-- No full authentication UI screens.
-- No business onboarding UI screens.
-- No customer CRUD screens.
-- No service management UI.
-- No automated background push scheduler.
-- No external WhatsApp API connection.
+As specified in the Phase 3 prompt, the following were strictly excluded:
+- No customer CRUD or contact imports.
+- No service entries or equipment management.
+- No maintenance schedules or AMC management.
+- No background reminder engine.
+- No WhatsApp or SMS messaging APIs.
 - No payment gateway / subscription billing.
 - No technician / employee management.
 - No multi-branch management.
-- No production database mutations.
+- No full dashboard analytics.
 
 ---
 
 ## 3. Test Results & Verification
 
-- **Automated Tests**: 45/45 unit and widget tests pass 100%.
+- **Automated Tests**: **69/69 unit and widget tests pass 100%**.
+  - `test/unit/auth_controller_test.dart` (8 tests)
+  - `test/unit/onboarding_controller_test.dart` (7 tests)
+  - `test/widget/auth_screens_test.dart` (4 tests)
+  - `test/widget/business_onboarding_test.dart` (4 tests)
+  - `test/widget/app_initialization_test.dart` (2 tests)
+  - `test/widget/navigation_test.dart` (1 test)
+  - Existing Phase 1 & 2 tests (43 tests)
 - **Static Analysis**: `flutter analyze` passes with **0 issues found**.
 - **Code Formatter**: `dart format .` passes on all Dart source files.
 - **SQL Migrations**: All 5 migrations validated against PostgreSQL 15 syntax standards.
-- **Project Connectivity**: Verified connectivity to live Supabase project `indaxefhyszjllrnssvm`.
 
 ---
 
-## 4. Supabase Cloud Backend Provisioning
+## 4. Next Phase Recommendation
 
-The project is connected to `https://indaxefhyszjllrnssvm.supabase.co`.
-To apply the complete 15-table relational schema and RLS policies:
-1. Open the [Supabase SQL Editor](https://supabase.com/dashboard/project/indaxefhyszjllrnssvm/sql/new).
-2. Copy the contents of `supabase/full_schema.sql` and run it.
-3. (Optional) Run `supabase/seed.sql` to populate sample development data.
-
----
-
-## 5. Next Phase Recommendation
-
-- **Phase 3: Authentication & Business Profile Onboarding**:
-  - Phone OTP / Email authentication flow with Supabase Auth.
-  - Business profile onboarding screens using `create_business_workspace` RPC.
-  - Session restoration and profile persistence.
+- **Phase 4: Customer Management & Mobile Contact Import**:
+  - Customer list, search, and filtering.
+  - Customer profile and contact details.
+  - Multiple customer addresses.
+  - Native mobile contact import with permission handling.
+  - Customer call and WhatsApp quick actions.

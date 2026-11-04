@@ -189,4 +189,275 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sampleReminderNote => 'AMC 1st Service Due this week';
+
+  @override
+  String get welcomeTitle => 'Manage your business, the simpler way.';
+
+  @override
+  String get welcomeSubtitle =>
+      'Keep your customers, services and important follow-ups organised in one place.';
+
+  @override
+  String get welcomeGetStarted => 'Get Started';
+
+  @override
+  String get welcomeAlreadyHaveAccount => 'I already have an account';
+
+  @override
+  String get welcomeSelectLanguage => 'Select Language';
+
+  @override
+  String get authEmail => 'Email Address';
+
+  @override
+  String get authEmailHint => 'e.g. business@gmail.com';
+
+  @override
+  String get authPassword => 'Password';
+
+  @override
+  String get authPasswordHint => 'Enter your password';
+
+  @override
+  String get authConfirmPassword => 'Confirm Password';
+
+  @override
+  String get authConfirmPasswordHint => 'Re-enter your password';
+
+  @override
+  String get authFullName => 'Full Name';
+
+  @override
+  String get authFullNameHint => 'e.g. Rajesh Patel';
+
+  @override
+  String get authLogin => 'Log In';
+
+  @override
+  String get authRegister => 'Create Account';
+
+  @override
+  String get authForgotPassword => 'Forgot Password?';
+
+  @override
+  String get authForgotPasswordTitle => 'Reset Password';
+
+  @override
+  String get authForgotPasswordSubtitle =>
+      'Enter your registered email address and we will send you a password reset link.';
+
+  @override
+  String get authSendResetLink => 'Send Reset Link';
+
+  @override
+  String get authResetLinkSentTitle => 'Check your email';
+
+  @override
+  String get authResetLinkSentMessage =>
+      'We have sent a password reset link to your email. Click the link in the email to set a new password.';
+
+  @override
+  String get authBackToLogin => 'Back to Log In';
+
+  @override
+  String get authDontHaveAccount => 'Don\'t have an account? Sign Up';
+
+  @override
+  String get authHaveAccount => 'Already have an account? Log In';
+
+  @override
+  String get authTermsAgreement =>
+      'By continuing, you agree to Yaadibook\'s Terms & Privacy Policy.';
+
+  @override
+  String get authResetPasswordTitle => 'Set New Password';
+
+  @override
+  String get authResetPasswordSubtitle =>
+      'Please enter and confirm your new password.';
+
+  @override
+  String get authSetNewPassword => 'Update Password';
+
+  @override
+  String get authPasswordUpdatedTitle => 'Password Updated';
+
+  @override
+  String get authPasswordUpdatedMessage =>
+      'Your password has been changed successfully. You can now log in.';
+
+  @override
+  String get valRequired => 'This field is required';
+
+  @override
+  String get valInvalidEmail => 'Please enter a valid email address';
+
+  @override
+  String get valPasswordMinLength => 'Password must be at least 6 characters';
+
+  @override
+  String get valPasswordMismatch => 'Passwords do not match';
+
+  @override
+  String get valInvalidPhone => 'Please enter a valid 10-digit mobile number';
+
+  @override
+  String get valInvalidPin => 'Please enter a valid 6-digit PIN code';
+
+  @override
+  String get authErrorInvalidCredentials =>
+      'Invalid email or password. Please try again.';
+
+  @override
+  String get authErrorEmailAlreadyRegistered =>
+      'This email is already registered. Please log in.';
+
+  @override
+  String get authErrorUserNotFound => 'No account found with this email.';
+
+  @override
+  String get authErrorWeakPassword =>
+      'Password is too weak. Please choose a stronger password.';
+
+  @override
+  String get authErrorNetwork =>
+      'Network error. Please check your internet connection.';
+
+  @override
+  String get authErrorGeneric => 'Authentication failed. Please try again.';
+
+  @override
+  String get authErrorEmailUnconfirmed =>
+      'Please verify your email address before logging in.';
+
+  @override
+  String get onboardingTitle => 'Business Setup';
+
+  @override
+  String get onboardingStep1Title => 'Business Info';
+
+  @override
+  String get onboardingStep1Subtitle => 'Tell us about your service business';
+
+  @override
+  String get onboardingStep2Title => 'Address';
+
+  @override
+  String get onboardingStep2Subtitle => 'Where is your business located?';
+
+  @override
+  String get onboardingStep3Title => 'Preferences';
+
+  @override
+  String get onboardingStep3Subtitle => 'Choose how your app should work';
+
+  @override
+  String get onboardingBusinessName => 'Business Name';
+
+  @override
+  String get onboardingBusinessNameHint => 'e.g. Patel Security Solutions';
+
+  @override
+  String get onboardingCategory => 'Business Category';
+
+  @override
+  String get onboardingCategoryHint => 'Select your primary service';
+
+  @override
+  String get onboardingCategoryOther => 'Custom Category Name';
+
+  @override
+  String get onboardingCategoryOtherHint => 'e.g. Solar Panel Services';
+
+  @override
+  String get onboardingPhone => 'Business Phone / WhatsApp';
+
+  @override
+  String get onboardingPhoneHint => '10-digit mobile number';
+
+  @override
+  String get onboardingEmail => 'Business Email (Optional)';
+
+  @override
+  String get onboardingEmailHint => 'e.g. contact@patelsecurity.com';
+
+  @override
+  String get onboardingAddress1 => 'Address Line 1';
+
+  @override
+  String get onboardingAddress1Hint => 'Shop/Office number, building name';
+
+  @override
+  String get onboardingAddress2 => 'Address Line 2 / Area (Optional)';
+
+  @override
+  String get onboardingAddress2Hint => 'Road, landmark, area';
+
+  @override
+  String get onboardingCity => 'City';
+
+  @override
+  String get onboardingCityHint => 'e.g. Ahmedabad, Surat, Rajkot';
+
+  @override
+  String get onboardingState => 'State';
+
+  @override
+  String get onboardingPinCode => 'PIN Code';
+
+  @override
+  String get onboardingPinCodeHint => '6-digit PIN code';
+
+  @override
+  String get onboardingCountry => 'Country';
+
+  @override
+  String get onboardingAppLanguage => 'App Language';
+
+  @override
+  String get onboardingDateFormat => 'Date Format';
+
+  @override
+  String get onboardingTimeFormat => 'Time Format';
+
+  @override
+  String get onboardingTimezone => 'Timezone';
+
+  @override
+  String get onboardingCreateBusiness => 'Complete Setup';
+
+  @override
+  String get onboardingCreating => 'Setting up your workspace...';
+
+  @override
+  String get onboardingSuccess => 'Workspace ready!';
+
+  @override
+  String onboardingStep(int current, int total) {
+    return 'Step $current of $total';
+  }
+
+  @override
+  String get categoryCctv => 'CCTV & Security Systems';
+
+  @override
+  String get categoryHvac => 'AC & HVAC Services';
+
+  @override
+  String get categoryRo => 'RO & Water Purifier';
+
+  @override
+  String get categoryAppliance => 'Appliance Repair';
+
+  @override
+  String get categoryElectrical => 'Electrical Services';
+
+  @override
+  String get categoryPlumbing => 'Plumbing Services';
+
+  @override
+  String get categoryGeneral => 'General Maintenance';
+
+  @override
+  String get categoryOther => 'Other Service';
 }
