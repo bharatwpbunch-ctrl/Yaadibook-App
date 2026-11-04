@@ -1,0 +1,75 @@
+{
+  "@@locale": "gu",
+  "appName": "યાદીબુક",
+  "appTagline": "સર્વિસ વ્યવસાય માટે સરળ સહાયક",
+
+  "navToday": "આજે",
+  "navCustomers": "ગ્રાહકો",
+  "navQuickAdd": "ઝડપી ઉમેરો",
+  "navReminders": "યાદી/રીમાઇન્ડર",
+  "navMore": "વધુ",
+
+  "actionSave": "સાચવો",
+  "actionCancel": "રદ કરો",
+  "actionConfirm": "ખાતરી કરો",
+  "actionDelete": "કાઢી નાખો",
+  "actionEdit": "સુધારો",
+  "actionAdd": "ઉમેરો",
+  "actionRetry": "ફરી પ્રયાસ કરો",
+  "actionClose": "બંધ કરો",
+  "actionBack": "પાછળ",
+  "actionNext": "આગળ",
+  "actionDone": "પૂર્ણ",
+  "actionSelect": "પસંદ કરો",
+  "actionViewAll": "બધું જુઓ",
+  "actionCall": "કોલ કરો",
+  "actionWhatsApp": "વોટ્સએપ",
+
+  "searchPlaceholder": "ગ્રાહકો, સર્વિસ શોધો...",
+  "selectDatePlaceholder": "તારીખ પસંદ કરો",
+  "noDataFound": "કોઈ વિગત મળી નથી",
+  "noDataSubtitle": "તમારી પહેલી એન્ટ્રી ઉમેરીને શરૂઆત કરો.",
+  "errorGeneric": "કંઈક ખોટું થયું. કૃપા કરીને ફરી પ્રયાસ કરો.",
+  "loading": "લોડ થઈ રહ્યું છે...",
+
+  "statusActive": "ચાલુ",
+  "statusPending": "બાકી",
+  "statusCompleted": "પૂર્ણ થયેલ",
+  "statusCancelled": "રદ કરેલ",
+  "statusOverdue": "મુદત વીતી ગયેલ",
+
+  "confirmDialogTitle": "શું તમે ખરેખર આગળ વધવા માંગો છો?",
+  "confirmDialogDefaultMessage": "શું તમે આ પ્રક્રિયા પૂર્ણ કરવા માંગો છો?",
+
+  "language": "ભાષા",
+  "languageEnglish": "English (અંગ્રેજી)",
+  "languageGujarati": "ગુજરાતી",
+  "languageHindi": "हिन्दी (હિન્દી)",
+
+  "settingsTitle": "સેટિંગ્સ",
+  "settingsLanguageSubtitle": "તમારી પસંદગીની ભાષા પસંદ કરો",
+  "settingsBusinessProfile": "વ્યવસાય પ્રોફાઇલ",
+  "settingsAbout": "યાદીબુક વિશે",
+  "settingsVersion": "આવૃત્તિ",
+
+  "dashboardTitle": "આજની વિગત",
+  "dashboardWelcome": "સ્વાગત છે",
+  "dashboardPendingFollowups": "બાકી ફોલો-અપ",
+  "dashboardUpcomingServices": "આગામી સર્વિસ",
+  "dashboardAmcRenewals": "AMC રિન્યુઅલ",
+
+  "customersTitle": "ગ્રાહકો",
+  "customersSubtitle": "ગ્રાહકોની યાદી અને ઇતિહાસ",
+
+  "remindersTitle": "યાદી/રીમાઇન્ડર",
+  "remindersSubtitle": "સર્વિસ બાકી, AMC રિન્યુઅલ અને ફોલો-અપ",
+
+  "quickAddTitle": "ઝડપી ઉમેરો",
+  "quickAddSubtitle": "નવા ગ્રાહક, સર્વિસ અથવા રીમાઇન્ડર ઉમેરો",
+
+  "sampleCustomerName": "રમેશભાઈ પટેલ",
+  "sampleCustomerPhone": "+91 98250 12345",
+  "sampleCustomerAddress": "એસ.જી. હાઇવે પાસે, અમદાવાદ",
+  "sampleServiceName": "એસી માસ્ટર સર્વિસ અને ગેસ રિફિલ",
+  "sampleReminderNote": "આ અઠવાડિયે AMC ની પ્રથમ સર્વિસ બાકી છે"
+}

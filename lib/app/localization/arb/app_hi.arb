@@ -1,0 +1,75 @@
+{
+  "@@locale": "hi",
+  "appName": "यादीबुक",
+  "appTagline": "सर्विस व्यवसाय के लिए सरल सहायक",
+
+  "navToday": "आज",
+  "navCustomers": "ग्राहक",
+  "navQuickAdd": "तुरंत जोड़ें",
+  "navReminders": "रिमाइंडर",
+  "navMore": "अधिक",
+
+  "actionSave": "सहेजें",
+  "actionCancel": "रद्द करें",
+  "actionConfirm": "पुष्टि करें",
+  "actionDelete": "हटाएं",
+  "actionEdit": "संपादित करें",
+  "actionAdd": "जोड़ें",
+  "actionRetry": "पुनः प्रयास करें",
+  "actionClose": "बंद करें",
+  "actionBack": "पीछे",
+  "actionNext": "आगे",
+  "actionDone": "पूर्ण",
+  "actionSelect": "चुनें",
+  "actionViewAll": "सभी देखें",
+  "actionCall": "कॉल करें",
+  "actionWhatsApp": "व्हाट्सएप",
+
+  "searchPlaceholder": "ग्राहक, सर्विस खोजें...",
+  "selectDatePlaceholder": "तारीख चुनें",
+  "noDataFound": "कोई जानकारी नहीं मिली",
+  "noDataSubtitle": "अपनी पहली प्रविष्टि जोड़कर शुरुआत करें।",
+  "errorGeneric": "कुछ गलत हो गया। कृपया पुन: प्रयास करें।",
+  "loading": "लोड हो रहा है...",
+
+  "statusActive": "सक्रिय",
+  "statusPending": "लंबित",
+  "statusCompleted": "पूर्ण",
+  "statusCancelled": "रद्द",
+  "statusOverdue": "समय समाप्त",
+
+  "confirmDialogTitle": "क्या आप सुनिश्चित हैं?",
+  "confirmDialogDefaultMessage": "क्या आप इस प्रक्रिया को जारी रखना चाहते हैं?",
+
+  "language": "भाषा",
+  "languageEnglish": "English (अंग्रेज़ी)",
+  "languageGujarati": "ગુજરાતી (गुजराती)",
+  "languageHindi": "हिन्दी",
+
+  "settingsTitle": "सेटिंग्स",
+  "settingsLanguageSubtitle": "अपनी पसंदीदा भाषा चुनें",
+  "settingsBusinessProfile": "व्यापार प्रोफ़ाइल",
+  "settingsAbout": "यादीबुक के बारे में",
+  "settingsVersion": "संस्करण",
+
+  "dashboardTitle": "आज का विवरण",
+  "dashboardWelcome": "स्वागत है",
+  "dashboardPendingFollowups": "लंबित फ़ॉलो-अप",
+  "dashboardUpcomingServices": "आगामी सर्विस",
+  "dashboardAmcRenewals": "AMC नवीनीकरण",
+
+  "customersTitle": "ग्राहक",
+  "customersSubtitle": "ग्राहक सूची और इतिहास प्रबंधित करें",
+
+  "remindersTitle": "रिमाइंडर",
+  "remindersSubtitle": "सर्विस बाकी, AMC नवीनीकरण और फॉलो-अप",
+
+  "quickAddTitle": "तुरंत जोड़ें",
+  "quickAddSubtitle": "नया ग्राहक, सर्विस रिकॉर्ड या रिमाइंडर जोड़ें",
+
+  "sampleCustomerName": "रमेशभाई पटेल",
+  "sampleCustomerPhone": "+91 98250 12345",
+  "sampleCustomerAddress": "एस.जी. हाईवे के पास, अहमदाबाद",
+  "sampleServiceName": "एसी मास्टर सर्विसिंग और गैस रिफिल",
+  "sampleReminderNote": "इस सप्ताह AMC की पहली सर्विस बाकी है"
+}

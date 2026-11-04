@@ -1,0 +1,86 @@
+{
+  "@@locale": "en",
+  "appName": "Yaadibook",
+  "@appName": {
+    "description": "The name of the application"
+  },
+  "appTagline": "Smart Business Assistant for Service Pros",
+  "@appTagline": {
+    "description": "Tagline of Yaadibook"
+  },
+
+  "navToday": "Today",
+  "@navToday": { "description": "Bottom nav tab for Today / Dashboard" },
+  "navCustomers": "Customers",
+  "@navCustomers": { "description": "Bottom nav tab for Customers" },
+  "navQuickAdd": "Quick Add",
+  "@navQuickAdd": { "description": "Bottom nav center action for Quick Add" },
+  "navReminders": "Reminders",
+  "@navReminders": { "description": "Bottom nav tab for Reminders" },
+  "navMore": "More",
+  "@navMore": { "description": "Bottom nav tab for More / Settings" },
+
+  "actionSave": "Save",
+  "actionCancel": "Cancel",
+  "actionConfirm": "Confirm",
+  "actionDelete": "Delete",
+  "actionEdit": "Edit",
+  "actionAdd": "Add",
+  "actionRetry": "Retry",
+  "actionClose": "Close",
+  "actionBack": "Back",
+  "actionNext": "Next",
+  "actionDone": "Done",
+  "actionSelect": "Select",
+  "actionViewAll": "View All",
+  "actionCall": "Call",
+  "actionWhatsApp": "WhatsApp",
+
+  "searchPlaceholder": "Search customers, services...",
+  "selectDatePlaceholder": "Select date",
+  "noDataFound": "No records found",
+  "noDataSubtitle": "Get started by adding your first entry.",
+  "errorGeneric": "Something went wrong. Please try again.",
+  "loading": "Loading...",
+
+  "statusActive": "Active",
+  "statusPending": "Pending",
+  "statusCompleted": "Completed",
+  "statusCancelled": "Cancelled",
+  "statusOverdue": "Overdue",
+
+  "confirmDialogTitle": "Are you sure?",
+  "confirmDialogDefaultMessage": "Do you want to proceed with this action?",
+
+  "language": "Language",
+  "languageEnglish": "English",
+  "languageGujarati": "ગુજરાતી (Gujarati)",
+  "languageHindi": "हिन्दी (Hindi)",
+
+  "settingsTitle": "Settings",
+  "settingsLanguageSubtitle": "Choose your preferred language",
+  "settingsBusinessProfile": "Business Profile",
+  "settingsAbout": "About Yaadibook",
+  "settingsVersion": "Version",
+
+  "dashboardTitle": "Today's Overview",
+  "dashboardWelcome": "Welcome back",
+  "dashboardPendingFollowups": "Pending Follow-ups",
+  "dashboardUpcomingServices": "Upcoming Services",
+  "dashboardAmcRenewals": "AMC Renewals",
+
+  "customersTitle": "Customers",
+  "customersSubtitle": "Manage your customer list and history",
+
+  "remindersTitle": "Reminders",
+  "remindersSubtitle": "Service dues, AMC renewals & follow-ups",
+
+  "quickAddTitle": "Quick Add",
+  "quickAddSubtitle": "Add a customer, new service record or reminder",
+
+  "sampleCustomerName": "Rameshbhai Patel",
+  "sampleCustomerPhone": "+91 98250 12345",
+  "sampleCustomerAddress": "Near S.G. Highway, Ahmedabad",
+  "sampleServiceName": "AC Master Servicing & Gas Refill",
+  "sampleReminderNote": "AMC 1st Service Due this week"
+}
