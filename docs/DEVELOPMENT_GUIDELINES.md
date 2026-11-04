@@ -37,3 +37,4 @@
 - `develop`: Integration branch for active phase features.
 - Feature branches: `feature/phase-X-feature-name`.
 - Never commit `.env` or credentials. Always verify `.gitignore` before committing.
+

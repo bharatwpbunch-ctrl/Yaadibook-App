@@ -80,3 +80,4 @@ All components are located in `lib/core/widgets/`:
 14. **`YbConfirmDialog`**: Standardized confirmation dialog for critical or destructive actions.
 15. **`YbBottomSheet`**: Modal bottom sheet with drag handle, title, and close action.
 16. **`YbSectionHeader`**: Clean section header with title, subtitle, and trailing "View All" link.
+

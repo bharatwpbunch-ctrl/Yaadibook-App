@@ -30,9 +30,9 @@ lib/
 │   ├── communication/    # WhatsApp / phone triggers
 │   └── settings/         # Language selection, profile, app info
 └── shared/               # Shared domain entities & cross-feature providers
-    ├── models/
-    ├── providers/
-    └── repositories/
+    ├── models/           # Domain models (User, Business, Customer, Service, AMC, Reminder)
+    ├── providers/        # Riverpod backend providers & DI
+    └── repositories/     # Repository interfaces & Supabase implementations
 ```
 
 ---
@@ -47,14 +47,26 @@ lib/
 | **Material 3** | Visual Design Foundation | Modern baseline customized with Yaadibook design tokens |
 | **flutter_localizations & intl** | Multilingual & Formatting | Standard Flutter localization using `.arb` files, localized dates & INR currency |
 | **flutter_secure_storage: ^9.2.4** | Secure Storage | Encrypted storage for auth tokens and user preferences (EncryptedSharedPreferences / Keychain) |
-| **supabase_flutter: ^2.8.4** | Backend Integration | Supabase PostgreSQL client, Auth, and Storage preparation |
+| **supabase_flutter: ^2.8.4** | Backend Integration | Supabase PostgreSQL client, Auth, and Storage |
 | **google_fonts: ^6.2.1** | Multilingual Typography | Consistent typography across Android OEMs supporting Gujarati, Devanagari & Latin |
+| **PostgreSQL 15+ (Supabase)** | Relational Database | Strict relational constraints, Row Level Security, JSONB audit logs |
 
 ---
 
 ## 3. Data Flow Architecture
 
 Each feature module is organized into four layers:
+
+```mermaid
+flowchart LR
+    UI[UI Widgets] -->|Action| Notifier[Riverpod Notifiers]
+    Notifier -->|Request| Repo[Repository Interfaces]
+    Repo -->|Execute| SupaRepo[Supabase Implementation]
+    SupaRepo -->|Query| DB[(PostgreSQL + RLS)]
+    DB -->|Secure Stream/Data| SupaRepo
+    SupaRepo -->|Domain Models| Notifier
+    Notifier -->|State Updates| UI
+```
 
 1. **Presentation / UI Layer**:
    - Flutter `ConsumerWidget` or `StatefulWidget`.
@@ -64,10 +76,11 @@ Each feature module is organized into four layers:
    - `StateNotifier<T>` or `AsyncNotifier<T>`.
    - Manages UI state, loading flags, and error transformations.
 3. **Repository Layer**:
-   - Abstract repository contracts (`ICustomerRepository`, etc.).
-   - Mediates between remote database, local cache, and domain models.
-4. **Data / Service Layer**:
-   - `SupabaseClient` for remote DB.
+   - Abstract repository contracts (`ICustomerRepository`, `IServiceRepository`, `IReminderRepository`, `IBusinessRepository`, `IAuthRepository`).
+   - Handles network errors and maps JSON responses into immutable domain models.
+4. **Data / Backend Layer**:
+   - `SupabaseClient` for remote DB calls.
+   - Protected by Row Level Security (RLS) policies.
    - `SecureStorageService` for encrypted local key-value data.
 
 ---

@@ -79,3 +79,4 @@ The following are strictly prohibited in the MVP:
 - Subscription billing systems.
 - Heavy enterprise ERP features.
 - Automated bulk spam messaging.
+

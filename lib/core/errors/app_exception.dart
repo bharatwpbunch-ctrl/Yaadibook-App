@@ -11,27 +11,29 @@ sealed class AppException implements Exception {
 }
 
 /// Network-related errors.
-class NetworkException extends AppException {
-  const NetworkException([
+class AppNetworkException extends AppException {
+  const AppNetworkException([
     super.message = 'Network connection failed',
     String? code,
   ]) : super(code: code);
 }
 
 /// Authentication/Session errors.
-class AuthException extends AppException {
-  const AuthException([super.message = 'Authentication failed', String? code])
-    : super(code: code);
+class AppAuthException extends AppException {
+  const AppAuthException([
+    super.message = 'Authentication failed',
+    String? code,
+  ]) : super(code: code);
 }
 
 /// Data validation errors.
-class ValidationException extends AppException {
-  const ValidationException(super.message, {super.code});
+class AppValidationException extends AppException {
+  const AppValidationException(super.message, {super.code});
 }
 
-/// Local storage errors.
-class StorageException extends AppException {
-  const StorageException([
+/// Storage & Database access errors.
+class AppStorageException extends AppException {
+  const AppStorageException([
     super.message = 'Storage access failed',
     String? code,
   ]) : super(code: code);
