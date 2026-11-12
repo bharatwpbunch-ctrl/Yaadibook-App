@@ -44,11 +44,13 @@ class AppSpacing {
 
   // Common Gap Widgets for Flex/Row/Column layouts
   static const SizedBox gapH4 = SizedBox(width: xs);
+  static const SizedBox gapH6 = SizedBox(width: 6.0);
   static const SizedBox gapH8 = SizedBox(width: sm);
   static const SizedBox gapH12 = SizedBox(width: md);
   static const SizedBox gapH16 = SizedBox(width: lg);
   static const SizedBox gapH24 = SizedBox(width: xxl);
 
+  static const SizedBox gapV2 = SizedBox(height: xxs);
   static const SizedBox gapV4 = SizedBox(height: xs);
   static const SizedBox gapV8 = SizedBox(height: sm);
   static const SizedBox gapV12 = SizedBox(height: md);

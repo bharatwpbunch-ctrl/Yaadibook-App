@@ -5,13 +5,18 @@ void main() {
   group('Database Schema & Security Migrations Verification', () {
     const migrationDir = 'supabase/migrations';
 
-    test('All 5 ordered migration files exist', () {
+    test('All ordered migration files exist', () {
       final migrations = [
         '20261104170001_core_schema.sql',
         '20261104170002_crm_and_services.sql',
         '20261104170003_maintenance_and_amc.sql',
         '20261104170004_reminders_and_communication.sql',
         '20261104170005_storage_and_security.sql',
+        '20261105160001_add_customer_type.sql',
+        '20261105170001_service_management.sql',
+        '20261106170001_maintenance_and_amc_enhancements.sql',
+        '20261106180001_unified_reminders_and_notifications.sql',
+        '20261106200001_communication_and_campaigns.sql',
       ];
 
       for (final migration in migrations) {
@@ -41,6 +46,12 @@ void main() {
         'notification_preferences',
         'business_settings',
         'audit_logs',
+        'message_templates',
+        'customer_messaging_preferences',
+        'provider_configurations',
+        'communication_campaigns',
+        'campaign_recipients',
+        'communication_usage',
       ];
 
       final migrationFiles = Directory(migrationDir)
@@ -143,6 +154,31 @@ void main() {
       expect(content.contains('Maruti AC & CCTV Services'), isTrue);
       expect(content.contains('Kailash Electronics'), isTrue);
       expect(content.contains('testowner@yaadibook.app'), isTrue);
+    });
+
+    test('Bharat CCTV Company demo seed file exists and is complete', () {
+      final demoSeedFile = File('supabase/seed_bharat_cctv_company.sql');
+      expect(demoSeedFile.existsSync(), isTrue);
+
+      final content = demoSeedFile.readAsStringSync();
+      expect(content.contains('bharat.wpbunch@gmail.com'), isTrue);
+      expect(content.contains('Bharat CCTV Company'), isTrue);
+      expect(content.contains('Shreeji Diamond Jewellers'), isTrue);
+      expect(content.contains('Dr. Rajesh Patel (Patel Clinic)'), isTrue);
+      expect(content.contains('Radhe Krishna Textiles Pvt Ltd'), isTrue);
+      expect(content.contains('Hikvision 32-Channel 4K NVR System'), isTrue);
+      expect(
+        content.contains('Full 32 IP Camera Setup & Server Rack Installation'),
+        isTrue,
+      );
+      expect(
+        content.contains('Quarterly CCTV Maintenance & Recording Verification'),
+        isTrue,
+      );
+      expect(
+        content.contains('Comprehensive Diamond Showroom 24x7 Security AMC'),
+        isTrue,
+      );
     });
   });
 }

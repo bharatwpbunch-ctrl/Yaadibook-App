@@ -1,6 +1,8 @@
 import 'dart:developer' as dev;
 import '../../app/config/app_config.dart';
 
+typedef Logger = AppLogger;
+
 /// Lightweight logging utility for Yaadibook.
 ///
 /// Automatically mutes non-error logs in production mode.

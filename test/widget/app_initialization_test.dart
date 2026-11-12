@@ -35,11 +35,10 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    // Verify app bar title and initial widgets render
-    expect(find.text('Yaadibook'), findsOneWidget);
+    // Verify dashboard navigation destinations and initial shell render
     expect(find.text('Today'), findsOneWidget);
     expect(find.text('Customers'), findsOneWidget);
-    expect(find.text('Quick Add'), findsOneWidget);
+    expect(find.text('Add'), findsOneWidget);
     expect(find.text('Reminders'), findsWidgets);
     expect(find.text('More'), findsOneWidget);
   });

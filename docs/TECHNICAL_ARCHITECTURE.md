@@ -49,6 +49,7 @@ lib/
 | **flutter_secure_storage: ^9.2.4** | Secure Storage | Encrypted storage for auth tokens and user preferences (EncryptedSharedPreferences / Keychain) |
 | **supabase_flutter: ^2.8.4** | Backend Integration | Supabase PostgreSQL client, Auth, and Storage |
 | **google_fonts: ^6.2.1** | Multilingual Typography | Consistent typography across Android OEMs supporting Gujarati, Devanagari & Latin |
+| **image_picker: ^1.2.4** | Photos & Attachments | Camera photo capture and gallery selection for job attachments |
 | **PostgreSQL 15+ (Supabase)** | Relational Database | Strict relational constraints, Row Level Security, JSONB audit logs |
 
 ---
@@ -129,4 +130,43 @@ The following must **NEVER** be present anywhere in the Flutter codebase, assets
 - Unauthenticated users cannot visit protected business routes.
 - Authenticated users without a business cannot bypass onboarding.
 - Users with completed onboarding cannot visit login or register routes.
+
+---
+
+## 7. App Shell & Today Dashboard Architecture (Phase 4)
+
+### 7.1 Shell Navigation & Modal Interception
+- **`StatefulShellRoute.indexedStack`**: Implements 4 persistent screen branches (`/today`, `/customers`, `/reminders`, `/more`).
+- **Action-Interception Pattern**: The center destination (`Add`) intercepts selection events to open `QuickAddSheet` as a modal bottom sheet without switching tabs or losing screen state.
+- **Root Route Navigation**: Dedicated root push for `/notifications` allowing natural back navigation to the active dashboard.
+
+### 7.2 Dashboard Repository & Metrics Engine
+- **`IDashboardRepository` / `SupabaseDashboardRepository`**: Executes isolated, business-scoped count and activity queries.
+- **`dashboardMetricsProvider`**: Asynchronously supplies real-time counts for Customers, Pending Services, Maintenance Due, and AMC Expiring Soon.
+- **`todayFocusProvider`**: Aggregates records due today or overdue from `reminders`, `maintenance_occurrences`, and `service_entries`.
+- **`getGreetingPeriod(DateTime)`**: Pure functional time-of-day calculation ensuring testability and localized morning/afternoon/evening greetings.
+
+---
+
+## 8. Customer Management & Mobile Contacts Architecture (Phase 5)
+
+### 8.1 Module Architecture & Services
+- **`CommunicationService`**: Normalizes Indian mobile numbers (stripping trunk `0`, country code `91`, dashes, spaces), constructs international WhatsApp format (`91XXXXXXXXXX`), and initiates platform calls via `tel:` and WhatsApp via `whatsapp://send` with fallback to `https://wa.me/`.
+- **`IContactsService` / `DeviceContactsService`**: Abstracted address book service integrating `flutter_contacts` and `permission_handler`. Supports permission checking, runtime request with fallback to app settings, and search filtering.
+- **`ICustomerRepository` / `SupabaseCustomerRepository`**: Encapsulates customer CRUD, address management, duplicate detection, soft deletion (`archived_at`), communication logging, and activity timeline aggregation.
+
+### 8.2 Duplicate Detection Strategy
+- Real-time normalization of phone input on field blur and submit.
+- Multi-column search across `primary_phone` and `alternate_phone` under the active `business_id`.
+- Duplicate modal alerts owner with options to either navigate directly to the existing customer's profile or acknowledge and proceed with saving anyway.
+
+### 8.3 Screen Routing & Navigation Hierarchy
+- Persistent branch: `/customers` (`CustomersScreen`).
+- Root navigator push routes:
+  - `/customers/add` (`AddCustomerScreen`, supports optional query params `name` and `phone`).
+  - `/customers/import` (`ContactImportScreen`).
+  - `/customers/:id` (`CustomerDetailScreen`).
+  - `/customers/:id/edit` (`EditCustomerScreen`).
+- Integrated with dashboard: `QuickAddSheet` "Add Customer" action directly pushes `/customers/add`.
+
 

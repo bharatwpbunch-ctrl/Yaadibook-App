@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'app/app.dart';
 import 'app/config/app_config.dart';
+import 'core/services/push_notification_service.dart';
 import 'core/services/supabase_service.dart';
+import 'core/sync/sync_providers.dart';
 import 'core/utils/logger.dart';
 
 void main() async {
@@ -19,6 +21,14 @@ void main() async {
   // 2. Prepare Supabase backend client (safe initialization in offline/placeholder mode)
   await SupabaseService.initialize(config);
 
-  // 3. Launch application root with Riverpod scope
-  runApp(const ProviderScope(child: YaadibookApp()));
+  // 3. Prepare Push & Local Notifications engine
+  await PushNotificationService.instance.initialize();
+
+  // 4. Launch application root with Riverpod scope & offline repository overrides
+  runApp(
+    ProviderScope(
+      overrides: buildOfflineRepositoryOverrides(),
+      child: const YaadibookApp(),
+    ),
+  );
 }

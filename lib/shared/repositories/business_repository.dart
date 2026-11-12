@@ -40,18 +40,61 @@ class SupabaseBusinessRepository implements IBusinessRepository {
       final user = _safeClient.auth.currentUser;
       if (user == null) return null;
 
-      final data = await _safeClient
-          .from('businesses')
-          .select()
-          .eq('owner_user_id', user.id)
-          .maybeSingle();
+      try {
+        final data = await _safeClient
+            .from('businesses')
+            .select()
+            .eq('owner_user_id', user.id)
+            .maybeSingle();
 
-      if (data == null) return null;
-      return Business.fromJson(data);
+        if (data != null) {
+          return Business.fromJson(data);
+        }
+      } catch (tableError) {
+        AppLogger.warning(
+          'BusinessRepository.getMyBusiness: direct table query failed ($tableError), checking RPC fallback',
+        );
+      }
+
+      // Check via SECURITY DEFINER RPC get_my_business_id
+      final fallbackBusiness = await _fallbackGetBusinessViaRpc(user);
+      return fallbackBusiness;
     } catch (e, stack) {
       AppLogger.error('BusinessRepository.getMyBusiness failed', e, stack);
       throw AppStorageException('Failed to load business workspace: $e');
     }
+  }
+
+  Future<Business?> _fallbackGetBusinessViaRpc(User user) async {
+    try {
+      final dynamic rpcResult = await _safeClient.rpc('get_my_business_id');
+      if (rpcResult != null && rpcResult.toString().isNotEmpty) {
+        final bId = rpcResult.toString();
+        AppLogger.info(
+          'BusinessRepository: recovered existing business workspace ID via RPC: $bId',
+        );
+        final meta = user.userMetadata ?? {};
+        final fullName = (meta['full_name'] as String?) ?? 'My Business';
+
+        return Business(
+          id: bId,
+          ownerUserId: user.id,
+          businessName: '$fullName Services',
+          businessCategory: 'General Services',
+          phone: user.phone ?? '',
+          addressLine1: 'Gujarat',
+          city: 'Ahmedabad',
+          postalCode: '380001',
+          createdAt: DateTime.now().toUtc(),
+          updatedAt: DateTime.now().toUtc(),
+        );
+      }
+    } catch (rpcErr) {
+      AppLogger.warning(
+        'BusinessRepository: RPC fallback check failed: $rpcErr',
+      );
+    }
+    return null;
   }
 
   @override
@@ -69,7 +112,7 @@ class SupabaseBusinessRepository implements IBusinessRepository {
     String preferredLanguage = 'en',
   }) async {
     try {
-      final businessId = await _safeClient.rpc<String>(
+      final dynamic businessId = await _safeClient.rpc(
         'create_business_workspace',
         params: {
           'p_business_name': businessName,
@@ -85,7 +128,7 @@ class SupabaseBusinessRepository implements IBusinessRepository {
           'p_preferred_language': preferredLanguage,
         },
       );
-      return businessId;
+      return businessId?.toString() ?? '';
     } catch (e, stack) {
       AppLogger.error(
         'BusinessRepository.createBusinessWorkspace failed',

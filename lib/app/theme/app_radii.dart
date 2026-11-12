@@ -11,6 +11,12 @@ class AppRadii {
   static const double xl = 24.0;
   static const double pill = 999.0;
 
+  // Semantic component aliases
+  static const double card = md;
+  static const double input = md;
+  static const double dialog = lg;
+  static const double badge = sm;
+
   static const Radius radiusXs = Radius.circular(xs);
   static const Radius radiusSm = Radius.circular(sm);
   static const Radius radiusMd = Radius.circular(md);

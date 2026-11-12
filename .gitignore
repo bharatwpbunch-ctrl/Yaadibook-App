@@ -50,6 +50,7 @@ app.*.map.json
 !.env.example
 *.keystore
 *.jks
+android/key.properties
 google-services.json
 GoogleService-Info.plist
 *.pem

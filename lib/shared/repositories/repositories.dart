@@ -1,6 +1,13 @@
+export 'amc_repository.dart';
 export 'auth_repository.dart';
+export 'bulk_messaging_repository.dart';
 export 'business_repository.dart';
+export 'communication_repository.dart';
+export 'consent_repository.dart';
 export 'customer_repository.dart';
+export 'maintenance_repository.dart';
+export 'message_template_repository.dart';
+export 'notification_repository.dart';
 export 'profile_repository.dart';
 export 'reminder_repository.dart';
 export 'service_repository.dart';

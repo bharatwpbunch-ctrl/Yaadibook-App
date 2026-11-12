@@ -61,6 +61,17 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
             duration: const Duration(seconds: 4),
           ),
         );
+        context.pushReplacement('/login');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'Account created successfully! Welcome to Yaadibook.',
+            ),
+            backgroundColor: AppColors.primary,
+          ),
+        );
+        context.go('/onboarding');
       }
     }
   }

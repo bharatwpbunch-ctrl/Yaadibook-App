@@ -258,6 +258,9 @@ class AuthController extends StateNotifier<AuthFormState> {
         lower.contains('at least 6 characters')) {
       return 'Password is too weak. Please choose a stronger password.';
     }
+    if (lower.contains('rate limit') || lower.contains('too many requests')) {
+      return 'Email rate limit reached. Please disable "Confirm email" in your Supabase Auth settings to create accounts instantly.';
+    }
     if (lower.contains('network') ||
         lower.contains('connection') ||
         lower.contains('socket')) {

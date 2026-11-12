@@ -12,6 +12,7 @@ class AppColors {
   static const Color primaryLight = Color(0xFF22C55E); // Tailwind Green 500
   static const Color primaryDark = Color(0xFF166534); // Tailwind Green 800
   static const Color primaryContainer = Color(0xFFDCFCE7); // Tailwind Green 100
+  static const Color primarySurface = primaryContainer;
   static const Color onPrimary = Colors.white;
   static const Color onPrimaryContainer = Color(0xFF14532D);
 
@@ -41,18 +42,22 @@ class AppColors {
   // Status & Semantic Colors
   static const Color success = Color(0xFF16A34A);
   static const Color successBg = Color(0xFFDCFCE7);
+  static const Color successContainer = successBg;
   static const Color successText = Color(0xFF14532D);
 
   static const Color warning = Color(0xFFD97706);
   static const Color warningBg = Color(0xFFFEF3C7);
+  static const Color warningContainer = warningBg;
   static const Color warningText = Color(0xFF92400E);
 
   static const Color error = Color(0xFFDC2626);
   static const Color errorBg = Color(0xFFFEE2E2);
+  static const Color errorContainer = errorBg;
   static const Color errorText = Color(0xFF991B1B);
 
   static const Color info = Color(0xFF2563EB);
   static const Color infoBg = Color(0xFFDBEAFE);
+  static const Color infoContainer = infoBg;
   static const Color infoText = Color(0xFF1E40AF);
 
   // WhatsApp brand color for direct customer contact

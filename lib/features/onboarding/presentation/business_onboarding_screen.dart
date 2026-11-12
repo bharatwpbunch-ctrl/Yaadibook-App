@@ -7,6 +7,7 @@ import '../../../app/theme/app_spacing.dart';
 import '../../../core/extensions/context_extensions.dart';
 import '../../../core/widgets/yb_primary_button.dart';
 import '../../../core/widgets/yb_secondary_button.dart';
+import '../../auth/providers/auth_controller.dart';
 import '../providers/onboarding_controller.dart';
 import 'widgets/onboarding_step_indicator.dart';
 import 'widgets/step_business_address.dart';
@@ -92,6 +93,43 @@ class BusinessOnboardingScreen extends ConsumerWidget {
           ),
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.logout_rounded,
+              color: AppColors.textSecondary,
+            ),
+            tooltip: l10n.authLogout,
+            onPressed: () async {
+              final confirmed = await showDialog<bool>(
+                context: context,
+                builder: (ctx) => AlertDialog(
+                  title: Text(l10n.authLogout),
+                  content: const Text(
+                    'Do you want to log out and return to the welcome screen?',
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(ctx, false),
+                      child: Text(l10n.actionCancel),
+                    ),
+                    FilledButton(
+                      style: FilledButton.styleFrom(
+                        backgroundColor: AppColors.error,
+                      ),
+                      onPressed: () => Navigator.pop(ctx, true),
+                      child: Text(l10n.authLogout),
+                    ),
+                  ],
+                ),
+              );
+
+              if (confirmed == true) {
+                await ref.read(authControllerProvider.notifier).signOut();
+              }
+            },
+          ),
+        ],
       ),
       body: SafeArea(
         child: Column(

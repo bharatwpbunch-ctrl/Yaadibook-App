@@ -289,7 +289,12 @@ class OnboardingController extends StateNotifier<OnboardingFormState> {
       }
 
       // Refresh cached business in Riverpod
-      _ref.invalidate(currentBusinessProvider);
+      try {
+        _ref.invalidate(currentBusinessProvider);
+        await _ref.read(currentBusinessProvider.future);
+      } catch (e) {
+        AppLogger.warning('OnboardingController: refresh business warning: $e');
+      }
       _ref.invalidate(currentUserProfileProvider);
 
       state = state.copyWith(isLoading: false, isCompleted: true);
@@ -300,9 +305,27 @@ class OnboardingController extends StateNotifier<OnboardingFormState> {
         e,
         stack,
       );
-      final errorMsg = e.toString().contains('already create one business')
-          ? 'A business workspace already exists for your account.'
-          : 'Failed to create business workspace. Please verify your details and try again.';
+      final errorStr = e.toString().toLowerCase();
+      final isAlreadyCreated =
+          errorStr.contains('one business workspace') ||
+          errorStr.contains('already exists') ||
+          errorStr.contains('already create') ||
+          errorStr.contains('duplicate key');
+
+      if (isAlreadyCreated) {
+        AppLogger.info(
+          'OnboardingController: business workspace already exists, proceeding to app',
+        );
+        try {
+          _ref.invalidate(currentBusinessProvider);
+          await _ref.read(currentBusinessProvider.future);
+        } catch (_) {}
+        state = state.copyWith(isLoading: false, isCompleted: true);
+        return true;
+      }
+
+      const errorMsg =
+          'Failed to create business workspace. Please verify your details and try again.';
       state = state.copyWith(isLoading: false, errorMessage: errorMsg);
       return false;
     }

@@ -7,6 +7,8 @@ import '../../../app/theme/app_spacing.dart';
 import '../../../core/extensions/context_extensions.dart';
 import '../../../core/widgets/yb_primary_button.dart';
 import '../../../core/widgets/yb_text_input.dart';
+import '../../../shared/providers/backend_providers.dart';
+import '../../onboarding/providers/onboarding_status_provider.dart';
 import '../providers/auth_controller.dart';
 
 /// Small-business owner login screen.
@@ -35,12 +37,29 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     ref.read(authControllerProvider.notifier).clearError();
     if (!_formKey.currentState!.validate()) return;
 
-    await ref
+    final success = await ref
         .read(authControllerProvider.notifier)
         .signInWithEmail(
           email: _emailController.text,
           password: _passwordController.text,
         );
+
+    if (success && mounted) {
+      ref.invalidate(currentBusinessProvider);
+      ref.invalidate(onboardingJourneyStatusProvider);
+      try {
+        final biz = await ref.read(currentBusinessProvider.future);
+        if (!mounted) return;
+        if (biz != null) {
+          context.go('/today');
+        } else {
+          context.go('/onboarding');
+        }
+      } catch (_) {
+        if (!mounted) return;
+        context.go('/today');
+      }
+    }
   }
 
   @override

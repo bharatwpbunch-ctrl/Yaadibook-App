@@ -99,3 +99,4 @@ Raw Supabase Auth exceptions are caught by `AuthController` and translated into 
 1. **Zero Secret Exposure**: Only the Supabase `anon` public key is utilized. No `service_role` key is ever included in the mobile client or Git repository.
 2. **Session Persistence**: Sessions are automatically persisted locally using `FlutterAuthClientOptions(autoRefreshToken: true)` via Supabase Flutter SDK.
 3. **Route Guards**: GoRouter dynamically checks `onboardingJourneyStatusProvider` before rendering any screen, preventing unauthorized access to restricted screens.
+

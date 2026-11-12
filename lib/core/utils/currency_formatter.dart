@@ -23,6 +23,10 @@ class CurrencyFormatter {
     }
   }
 
+  /// Convenience alias for format.
+  static String formatINR(num amount, {bool showDecimals = false}) =>
+      format(amount, showDecimals: showDecimals);
+
   /// Compact formatting for overview badges or stat cards (e.g. ₹2.5L, ₹15K).
   static String formatCompact(num amount, {String symbol = '₹'}) {
     if (amount >= 10000000) {

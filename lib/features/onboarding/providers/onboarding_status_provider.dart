@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../shared/providers/backend_providers.dart';
+import 'onboarding_controller.dart';
 
 enum OnboardingJourneyStatus {
   loading,
@@ -12,6 +13,9 @@ enum OnboardingJourneyStatus {
 final onboardingJourneyStatusProvider = Provider<OnboardingJourneyStatus>((
   ref,
 ) {
+  // Listen to Supabase auth state stream for reactive updates
+  ref.watch(authStateProvider);
+
   final authRepo = ref.watch(authRepositoryProvider);
   final currentUser = authRepo.currentUser;
 
@@ -20,7 +24,13 @@ final onboardingJourneyStatusProvider = Provider<OnboardingJourneyStatus>((
     return OnboardingJourneyStatus.unauthenticated;
   }
 
-  // 2. Watch business query
+  // 2. If onboardingController completed setup in memory, immediately allow transition
+  final onboardingState = ref.watch(onboardingControllerProvider);
+  if (onboardingState.isCompleted) {
+    return OnboardingJourneyStatus.completed;
+  }
+
+  // 3. Watch business query
   final businessAsync = ref.watch(currentBusinessProvider);
 
   return businessAsync.when(

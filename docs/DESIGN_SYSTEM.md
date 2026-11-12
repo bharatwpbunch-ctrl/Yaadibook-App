@@ -81,3 +81,14 @@ All components are located in `lib/core/widgets/`:
 15. **`YbBottomSheet`**: Modal bottom sheet with drag handle, title, and close action.
 16. **`YbSectionHeader`**: Clean section header with title, subtitle, and trailing "View All" link.
 
+---
+
+## 4. Phase 4 Presentation Components
+
+Located in `lib/features/dashboard/presentation/widgets/`:
+
+1. **`DashboardHeader`**: Time-aware greeting card displaying owner's first name, active business name, localized current date, settings avatar shortcut, and notification bell trigger.
+2. **`SummaryCardGrid`**: 4-card compact metric grid for Customers, Pending Services, Maintenance Due, and AMC Expiring Soon with semantic icons and count display.
+3. **`TodayFocusSection`**: High-priority task aggregator supporting real overdue and due-today activities, source badges (`Maintenance`, `AMC`, `Follow-up`, `Service`), INR pricing, and friendly empty state.
+4. **`QuickAddSheet`**: Bottom modal sheet presenting 5 core creation actions with standard drag handle, clear explanations, and Phase 4 "Coming Soon" badges.
+

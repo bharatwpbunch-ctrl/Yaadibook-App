@@ -46,6 +46,24 @@ final reminderRepositoryProvider = Provider<IReminderRepository>((ref) {
   return SupabaseReminderRepository(client);
 });
 
+/// Provider for Maintenance repository.
+final maintenanceRepositoryProvider = Provider<IMaintenanceRepository>((ref) {
+  final client = ref.watch(supabaseClientProvider);
+  return SupabaseMaintenanceRepository(client);
+});
+
+/// Provider for AMC repository.
+final amcRepositoryProvider = Provider<IAmcRepository>((ref) {
+  final client = ref.watch(supabaseClientProvider);
+  return SupabaseAmcRepository(client);
+});
+
+/// Provider for Notification repository.
+final notificationRepositoryProvider = Provider<INotificationRepository>((ref) {
+  final client = ref.watch(supabaseClientProvider);
+  return SupabaseNotificationRepository(client);
+});
+
 /// Stream provider for authentication state changes.
 final authStateProvider = StreamProvider<AuthState>((ref) {
   final authRepo = ref.watch(authRepositoryProvider);
@@ -54,12 +72,68 @@ final authStateProvider = StreamProvider<AuthState>((ref) {
 
 /// Future provider for loading the authenticated user's profile.
 final currentUserProfileProvider = FutureProvider<UserProfile?>((ref) async {
-  final profileRepo = ref.watch(profileRepositoryProvider);
-  return profileRepo.getMyProfile();
+  try {
+    final profileRepo = ref.watch(profileRepositoryProvider);
+    return await profileRepo.getMyProfile();
+  } catch (_) {
+    return null;
+  }
 });
 
 /// Future provider for loading the active business of the authenticated owner.
 final currentBusinessProvider = FutureProvider<Business?>((ref) async {
-  final businessRepo = ref.watch(businessRepositoryProvider);
-  return businessRepo.getMyBusiness();
+  try {
+    final businessRepo = ref.watch(businessRepositoryProvider);
+    return await businessRepo.getMyBusiness();
+  } catch (_) {
+    return null;
+  }
 });
+
+/// Provider for communication repository (WhatsApp, SMS, manual logging, stats).
+final communicationRepositoryProvider = Provider<ICommunicationRepository>((
+  ref,
+) {
+  try {
+    final client = ref.watch(supabaseClientProvider);
+    return SupabaseCommunicationRepository(client);
+  } catch (_) {
+    return SupabaseCommunicationRepository(null);
+  }
+});
+
+/// Provider for message template repository (en/gu/hi templates, placeholders).
+final messageTemplateRepositoryProvider = Provider<IMessageTemplateRepository>((
+  ref,
+) {
+  try {
+    final client = ref.watch(supabaseClientProvider);
+    return SupabaseMessageTemplateRepository(client);
+  } catch (_) {
+    return SupabaseMessageTemplateRepository(null);
+  }
+});
+
+/// Provider for customer messaging preferences and consent repository.
+final consentRepositoryProvider = Provider<IConsentRepository>((ref) {
+  try {
+    final client = ref.watch(supabaseClientProvider);
+    return SupabaseConsentRepository(client);
+  } catch (_) {
+    return SupabaseConsentRepository(null);
+  }
+});
+
+/// Provider for bulk messaging and campaign management.
+final bulkMessagingRepositoryProvider = Provider<IBulkMessagingRepository>((
+  ref,
+) {
+  try {
+    final client = ref.watch(supabaseClientProvider);
+    return SupabaseBulkMessagingRepository(client);
+  } catch (_) {
+    return SupabaseBulkMessagingRepository(null);
+  }
+});
+
+// Bulk messaging & feature entitlements are served from `features/subscriptions/providers/subscription_providers.dart`.

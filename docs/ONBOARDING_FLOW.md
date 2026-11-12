@@ -94,3 +94,4 @@ If a network glitch or database error occurs during submission:
 - Form fields are completely preserved in `OnboardingFormState`.
 - User is shown a clear error banner.
 - User can retry safely without having to re-enter their information.
+
