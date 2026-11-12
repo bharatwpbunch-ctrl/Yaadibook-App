@@ -15,6 +15,7 @@
 -keep class io.flutter.util.** { *; }
 -keep class io.flutter.view.** { *; }
 -keep class io.flutter.** { *; }
+-dontwarn com.google.android.play.core.**
 
 # SQLite / Drift JNI symbols
 -keep class org.sqlite.** { *; }
