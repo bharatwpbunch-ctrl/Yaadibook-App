@@ -1,3 +1,7 @@
+import java.io.FileInputStream
+import java.util.Properties
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -9,6 +13,12 @@ if (file("google-services.json").exists()) {
     apply(plugin = "com.google.gms.google-services")
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
+    }
+}
+
 android {
     namespace = "com.yaadibook.yaadibook"
     compileSdk = flutter.compileSdkVersion
@@ -17,10 +27,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
     defaultConfig {
@@ -35,8 +41,8 @@ android {
         create("release") {
             val keystorePropsFile = rootProject.file("key.properties")
             if (keystorePropsFile.exists()) {
-                val props = java.util.Properties()
-                java.io.FileInputStream(keystorePropsFile).use { props.load(it) }
+                val props = Properties()
+                FileInputStream(keystorePropsFile).use { props.load(it) }
                 val storeFilePath = props.getProperty("storeFile")
                 if (!storeFilePath.isNullOrBlank()) {
                     storeFile = file(storeFilePath)
